@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load form_tags %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto py-16">
+    <div class="bg-white p-10 rounded-3xl shadow-lg border border-slate-200">
+
+        <!-- TITLE -->
+        <h2 class="text-2xl font-bold mb-4 text-slate-800">{{ title }}</h2>
+
+        <!-- SMART HINT -->
+        <p class="text-sm text-slate-400 mb-6">
+            {% if title == "Tell us about your 10th" %}
+                This helps us understand your early interests.
+            {% elif title == "Your 12th Stream & Subjects" %}
+                This determines eligible careers like Engineering, Medicine, etc.
+            {% elif title == "Your Degree Details" %}
+                This aligns your degree with career paths.
+            {% elif title == "Your Postgraduate Info" %}
+                This helps us suggest career growth and transitions.
+            {% elif title == "Your Professional Info" %}
+                This helps us suggest career growth and transitions.
+            {% else %}
+                Provide accurate details for better AI recommendations.
+            {% endif %}
+        </p>
+
+        <!-- PROGRESS BAR -->
+        <div class="w-full bg-slate-200 rounded-full h-2.5 mb-8">
+            <div class="bg-blue-600 h-2.5 rounded-full transition-all duration-500" style="width: {{ percent }}%;"></div>
+        </div>
+
+        <!-- FORM -->
+        <form method="POST" class="space-y-6">
+            {% csrf_token %}
+            {% for field in form %}
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-2">{{ field.label }}</label>
+
+                    {% if field.field.widget.input_type == "checkbox" or field.field.widget.input_type == "radio" %}
+                        <div class="space-y-2">{{ field }}</div>
+                    {% else %}
+                        {{ field|add_class:"w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500" }}
+                    {% endif %}
+
+                    {% if field.help_text %}
+                        <p class="text-xs text-slate-400 mt-1">{{ field.help_text }}</p>
+                    {% endif %}
+
+                    {% for error in field.errors %}
+                        <p class="text-xs text-red-500 mt-1">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition">
+                Continue →
+            </button>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

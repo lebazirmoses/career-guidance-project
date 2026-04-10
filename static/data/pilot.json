@@ -1,0 +1,36 @@
+{
+  "profession": "Commercial Pilot",
+  "category": "Aviation & Transport",
+  "overview": "Responsible for flying aircraft commercially, requires rigorous training and medical fitness.",
+  "total_time_estimate": "3 - 6 Years",
+  "average_cost_estimate": {
+    "government": "₹50 Lakhs - ₹80 Lakhs",
+    "private": "₹80 Lakhs - ₹1.5 Crores"
+  },
+  "roadmap": [
+    {
+      "stage": "Class 11 & 12",
+      "duration": "2 Years",
+      "title": "Stream Selection & Foundation",
+      "mandatory_requirements": {
+        "stream": "Science (PCM preferred)",
+        "subjects": ["Physics", "Mathematics", "English"],
+        "minimum_board_score": "50% in PCM"
+      },
+      "key_actions": ["Develop strong numerical and analytical skills."]
+    },
+    {
+      "stage": "Pilot Training",
+      "duration": "1.5 - 3 Years",
+      "title": "Private Pilot License (PPL) & Commercial Pilot License (CPL)",
+      "description": "Enroll in DGCA-approved flying schools.",
+      "key_actions": ["Complete flying hours", "Pass DGCA exams", "Medical clearance."]
+    },
+    {
+      "stage": "Airline Type Rating & Employment",
+      "duration": "Ongoing",
+      "title": "Commercial Pilot & Airline Operations",
+      "key_actions": ["Join airlines after type rating training", "Upgrade to Captain with experience"]
+    }
+  ]
+}

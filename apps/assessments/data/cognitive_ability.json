@@ -1,0 +1,260 @@
+{
+  "name": "Cognitive Ability Test",
+  "slug": "cognitive-ability",
+  "category": "cognitive",
+  "test_type": "mcq",
+  "time_limit_mins": 25,
+  "is_mandatory": true,
+  "applicable_levels": ["10", "12", "undergraduate"],
+  "questions": [
+    {
+      "text": "Find the next number: 2, 6, 12, 20, ?",
+      "difficulty_multiplier": 1.2,
+      "options": [
+        {"text": "28", "scores": {"logical_reasoning": 0.6, "numerical_aptitude": 0.4}},
+        {"text": "30", "scores": {"logical_reasoning": 1.0, "numerical_aptitude": 0.8}},
+        {"text": "32", "scores": {"logical_reasoning": 0.4, "numerical_aptitude": 0.2}},
+        {"text": "36", "scores": {"logical_reasoning": 0.2, "numerical_aptitude": 0.1}}
+      ]
+    },
+    {
+      "text": "Find the next number: 3, 9, 27, ?",
+      "difficulty_multiplier": 1.1,
+      "options": [
+        {"text": "54", "scores": {"numerical_aptitude": 0.5}},
+        {"text": "72", "scores": {"numerical_aptitude": 0.3}},
+        {"text": "81", "scores": {"numerical_aptitude": 1.0, "logical_reasoning": 0.5}},
+        {"text": "90", "scores": {"numerical_aptitude": 0.1}}
+      ]
+    },
+    {
+      "text": "Which number is the odd one out?",
+      "difficulty_multiplier": 1.3,
+      "options": [
+        {"text": "121", "scores": {"attention_to_detail": 0.2}},
+        {"text": "144", "scores": {"attention_to_detail": 0.2}},
+        {"text": "150", "scores": {"attention_to_detail": 1.0, "logical_reasoning": 1.0}},
+        {"text": "169", "scores": {"attention_to_detail": 0.2}}
+      ]
+    },
+    {
+      "text": "Complete the series: 5, 10, 20, 40, ?",
+      "difficulty_multiplier": 1.0,
+      "options": [
+        {"text": "60", "scores": {"numerical_aptitude": 0.5}},
+        {"text": "70", "scores": {"numerical_aptitude": 0.3}},
+        {"text": "80", "scores": {"numerical_aptitude": 1.0}},
+        {"text": "90", "scores": {"numerical_aptitude": 0.1}}
+      ]
+    },
+    {
+      "text": "If A = 1, B = 2, then DOG = ?",
+      "difficulty_multiplier": 1.4,
+      "options": [
+        {"text": "26", "scores": {"logical_reasoning": 1.0, "attention_to_detail": 1.0}},
+        {"text": "27", "scores": {"logical_reasoning": 0.6}},
+        {"text": "28", "scores": {"logical_reasoning": 0.4}},
+        {"text": "29", "scores": {"logical_reasoning": 0.2}}
+      ]
+    },
+    {
+      "text": "Which shape completes the pattern?",
+      "difficulty_multiplier": 1.2,
+      "options": [
+        {"text": "Circle", "scores": {"spatial_reasoning": 0.2}},
+        {"text": "Square", "scores": {"spatial_reasoning": 1.0}},
+        {"text": "Triangle", "scores": {"spatial_reasoning": 0.5}},
+        {"text": "Hexagon", "scores": {"spatial_reasoning": 0.3}}
+      ]
+    },
+    {
+      "text": "If 5x = 20, what is x?",
+      "difficulty_multiplier": 1.0,
+      "options": [
+        {"text": "2", "scores": {"numerical_aptitude": 0.2}},
+        {"text": "3", "scores": {"numerical_aptitude": 0.5}},
+        {"text": "4", "scores": {"numerical_aptitude": 1.0}},
+        {"text": "5", "scores": {"numerical_aptitude": 0.3}}
+      ]
+    },
+    {
+      "text": "Find missing number: 7, 14, 28, ?",
+      "difficulty_multiplier": 1.0,
+      "options": [
+        {"text": "42", "scores": {"logical_reasoning": 0.6}},
+        {"text": "56", "scores": {"logical_reasoning": 1.0, "numerical_aptitude": 1.0}},
+        {"text": "60", "scores": {"logical_reasoning": 0.2}},
+        {"text": "70", "scores": {"logical_reasoning": 0.3}}
+      ]
+    },
+    {
+      "text": "Which word is different?",
+      "difficulty_multiplier": 1.1,
+      "options": [
+        {"text": "Apple", "scores": {"logical_reasoning": 0.2}},
+        {"text": "Banana", "scores": {"logical_reasoning": 0.2}},
+        {"text": "Carrot", "scores": {"logical_reasoning": 1.0, "attention_to_detail": 0.8}},
+        {"text": "Mango", "scores": {"logical_reasoning": 0.2}}
+      ]
+    },
+    {
+      "text": "If today is Monday, what day is after 3 days?",
+      "difficulty_multiplier": 1.1,
+      "options": [
+        {"text": "Wednesday", "scores": {"logical_reasoning": 0.4}},
+        {"text": "Thursday", "scores": {"logical_reasoning": 1.0}},
+        {"text": "Friday", "scores": {"logical_reasoning": 0.3}},
+        {"text": "Saturday", "scores": {"logical_reasoning": 0.1}}
+      ]
+    },
+    {
+      "text": "Find next: 1, 4, 9, 16, ?",
+      "difficulty_multiplier": 1.2,
+      "options": [
+        {"text": "20", "scores": {"numerical_aptitude": 0.3}},
+        {"text": "25", "scores": {"numerical_aptitude": 1.0, "logical_reasoning": 0.8}},
+        {"text": "30", "scores": {"numerical_aptitude": 0.2}},
+        {"text": "36", "scores": {"numerical_aptitude": 0.5}}
+      ]
+    },
+    {
+      "text": "If all cats are animals, is every animal a cat?",
+      "difficulty_multiplier": 1.2,
+      "options": [
+        {"text": "Yes", "scores": {"logical_reasoning": 0.0}},
+        {"text": "No", "scores": {"logical_reasoning": 1.0}},
+        {"text": "Maybe", "scores": {"logical_reasoning": 0.3}}
+      ]
+    },
+    {
+      "text": "Which is largest?",
+      "difficulty_multiplier": 1.1,
+      "options": [
+        {"text": "0.5", "scores": {"numerical_aptitude": 0.6}},
+        {"text": "0.05", "scores": {"numerical_aptitude": 0.1}},
+        {"text": "0.25", "scores": {"numerical_aptitude": 0.3}},
+        {"text": "0.75", "scores": {"numerical_aptitude": 1.0, "attention_to_detail": 1.0}}
+      ]
+    },
+    {
+      "text": "Complete analogy: Book : Read :: Food : ?",
+      "difficulty_multiplier": 1.0,
+      "options": [
+        {"text": "Cook", "scores": {"logical_reasoning": 0.6}},
+        {"text": "Serve", "scores": {"logical_reasoning": 0.4}},
+        {"text": "Buy", "scores": {"logical_reasoning": 0.2}},
+        {"text": "Eat", "scores": {"logical_reasoning": 1.0}}
+      ]
+    },
+    {
+      "text": "Find missing: 11, 13, 17, 19, ?",
+      "difficulty_multiplier": 1.3,
+      "options": [
+        {"text": "21", "scores": {"numerical_aptitude": 0.4}},
+        {"text": "23", "scores": {"numerical_aptitude": 1.0, "logical_reasoning": 1.0}},
+        {"text": "25", "scores": {"numerical_aptitude": 0.2}},
+        {"text": "27", "scores": {"numerical_aptitude": 0.1}}
+      ]
+    },
+    {
+      "text": "Mirror image of 'b'?",
+      "difficulty_multiplier": 1.2,
+      "options": [
+        {"text": "b", "scores": {"spatial_reasoning": 0.0}},
+        {"text": "d", "scores": {"spatial_reasoning": 1.0}},
+        {"text": "p", "scores": {"spatial_reasoning": 0.6}},
+        {"text": "q", "scores": {"spatial_reasoning": 0.4}}
+      ]
+    },
+    {
+      "text": "Which comes next: A, C, E, G, ?",
+      "difficulty_multiplier": 1.0,
+      "options": [
+        {"text": "H", "scores": {"logical_reasoning": 0.3}},
+        {"text": "I", "scores": {"logical_reasoning": 1.0}},
+        {"text": "J", "scores": {"logical_reasoning": 0.2}},
+        {"text": "K", "scores": {"logical_reasoning": 0.1}}
+      ]
+    },
+    {
+      "text": "Speed: 60km/hr for 2 hrs = ?",
+      "difficulty_multiplier": 1.1,
+      "options": [
+        {"text": "100", "scores": {"numerical_aptitude": 0.4}},
+        {"text": "120", "scores": {"numerical_aptitude": 1.0}},
+        {"text": "140", "scores": {"numerical_aptitude": 0.3}},
+        {"text": "160", "scores": {"numerical_aptitude": 0.1}}
+      ]
+    },
+    {
+      "text": "If 2^3 = 8, then 2^5 = ?",
+      "difficulty_multiplier": 1.3,
+      "options": [
+        {"text": "16", "scores": {"numerical_aptitude": 0.6}},
+        {"text": "32", "scores": {"numerical_aptitude": 1.0}},
+        {"text": "64", "scores": {"numerical_aptitude": 0.3}},
+        {"text": "128", "scores": {"numerical_aptitude": 0.1}}
+      ]
+    },
+    {
+      "text": "Which is smallest?",
+      "difficulty_multiplier": 1.4,
+      "options": [
+        {"text": "1/2", "scores": {"numerical_aptitude": 0.2}},
+        {"text": "1/3", "scores": {"numerical_aptitude": 0.4}},
+        {"text": "1/4", "scores": {"numerical_aptitude": 0.7}},
+        {"text": "1/5", "scores": {"numerical_aptitude": 1.0, "attention_to_detail": 1.0}}
+      ]
+    },
+    {
+      "text": "Which number is divisible by 3?",
+      "difficulty_multiplier": 1.2,
+      "options": [
+        {"text": "25", "scores": {"numerical_aptitude": 0.0}},
+        {"text": "27", "scores": {"numerical_aptitude": 1.0}},
+        {"text": "29", "scores": {"numerical_aptitude": 0.0}},
+        {"text": "31", "scores": {"numerical_aptitude": 0.0}}
+      ]
+    },
+    {
+      "text": "Clock: What is the angle between the hands at 3:15?",
+      "difficulty_multiplier": 1.5,
+      "options": [
+        {"text": "0°", "scores": {"logical_reasoning": 0.5}},
+        {"text": "7.5°", "scores": {"logical_reasoning": 1.0, "numerical_aptitude": 1.0}},
+        {"text": "15°", "scores": {"logical_reasoning": 0.4}},
+        {"text": "30°", "scores": {"logical_reasoning": 0.2}}
+      ]
+    },
+    {
+      "text": "Rearrange: TAC → ?",
+      "difficulty_multiplier": 1.1,
+      "options": [
+        {"text": "ACT", "scores": {"logical_reasoning": 0.8, "verbal_ability": 0.8}},
+        {"text": "ATC", "scores": {"logical_reasoning": 0.3}},
+        {"text": "CAT", "scores": {"logical_reasoning": 1.0, "verbal_ability": 1.0}},
+        {"text": "CTA", "scores": {"logical_reasoning": 0.1}}
+      ]
+    },
+    {
+      "text": "Which is prime?",
+      "difficulty_multiplier": 1.2,
+      "options": [
+        {"text": "9", "scores": {"numerical_aptitude": 0.3}},
+        {"text": "11", "scores": {"numerical_aptitude": 1.0}},
+        {"text": "15", "scores": {"numerical_aptitude": 0.3}},
+        {"text": "21", "scores": {"numerical_aptitude": 0.2}}
+      ]
+    },
+    {
+      "text": "If 10% of 200 = ?",
+      "difficulty_multiplier": 1.0,
+      "options": [
+        {"text": "10", "scores": {"numerical_aptitude": 0.2}},
+        {"text": "20", "scores": {"numerical_aptitude": 1.0}},
+        {"text": "30", "scores": {"numerical_aptitude": 0.3}},
+        {"text": "40", "scores": {"numerical_aptitude": 0.1}}
+      ]
+    }
+  ]
+}

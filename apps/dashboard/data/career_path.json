@@ -1,0 +1,245 @@
+{
+  "Science": {
+    "PCMB": {
+      "degrees": {
+        "B.Sc": {
+          "specializations": {
+            "Physics": ["Astrophysicist", "Quantum Computing Researcher", "Medical Physicist", "Data Scientist"],
+            "Chemistry": ["Analytical Chemist", "Toxicologist", "Forensic Scientist", "Materials Scientist", "Geochemist"],
+            "Mathematics": ["Cryptographer", "Quantitative Analyst", "Operations Research Analyst", "Actuary"],
+            "Biology": ["Epidemiologist", "Marine Biologist", "Ecologist", "Microbiologist", "Zoologist", "Botanist"],
+            "Environmental Science": ["Sustainability Consultant", "Climate Change Analyst", "Environmental Engineer", "Conservationist"],
+            "Genetics": ["Genetic Counselor", "Clinical Cytogeneticist", "Genomic Medicine Researcher"],
+            "Forensic Science": ["Crime Scene Investigator", "Forensic DNA Analyst", "Digital Forensics Expert"]
+          }
+        },
+        "B.Tech": {
+          "specializations": {
+            "CSE": ["Software Engineer", "AI/ML Engineer", "Data Scientist", "Cloud Architect", "DevOps Engineer", "Prompt Engineer"],
+            "ECE": ["VLSI Design Engineer", "Embedded Systems Developer", "5G Network Architect", "IoT Solutions Engineer"],
+            "Mechanical": ["Robotics Engineer", "Automobile Designer", "HVAC Engineer", "Mechatronics Engineer"],
+            "Civil": ["Structural Engineer", "Urban Planner", "Geotechnical Engineer", "Transportation Engineer"],
+            "Biomedical": ["Medical Device Designer", "Biomechanics Engineer", "Clinical Engineer", "Prosthetics Engineer"],
+            "Aerospace": ["Aerodynamics Engineer", "Satellite Propulsion Engineer", "Avionics Tester"],
+            "Biotechnology": ["Bio-Process Engineer", "Pharmaceutical Engineer", "Cellular Agriculture Engineer"],
+            "Food Technology": ["Food Safety Auditor", "Flavor Chemist", "Quality Control Manager"]
+          }
+        },
+        "B.Pharm": ["Clinical Research Associate", "Pharmacovigilance Officer", "Drug Inspector", "Regulatory Affairs Specialist", "Formulation Scientist"],
+        "B.Arch": ["Residential Architect", "Landscape Architect", "Urban Designer", "Conservation Architect"]
+      }
+    },
+    "PCB": {
+      "degrees": {
+        "MBBS": {
+          "specializations": {
+            "General Medicine": ["General Physician", "Medical Officer", "Intensivist"],
+            "Surgery": ["General Surgeon", "Neurosurgeon", "Cardiothoracic Surgeon", "Plastic Surgeon"],
+            "Pediatrics": ["Pediatrician", "Neonatologist"],
+            "Psychiatry": ["Clinical Psychiatrist", "Addiction Psychiatrist"],
+            "Gynecology & Obstetrics": ["Gynecologist", "Obstetrician", "IVF Specialist"]
+          }
+        },
+        "AYUSH": {
+          "specializations": {
+            "BAMS (Ayurveda)": ["Ayurvedic Physician", "Panchakarma Specialist", "Ayurvedic Pharmacologist"],
+            "BHMS (Homeopathy)": ["Homeopathic Doctor", "Public Health Officer"],
+            "BNYS (Naturopathy)": ["Naturopathic Doctor", "Yoga Therapist", "Holistic Wellness Coach"]
+          }
+        },
+        "BDS": ["General Dentist", "Orthodontist", "Maxillofacial Surgeon", "Periodontist", "Endodontist"],
+        "B.Sc Nursing": ["Critical Care Nurse", "Nurse Practitioner", "Public Health Nurse", "Operation Theater Nurse"],
+        "BPT": ["Sports Physiotherapist", "Orthopedic Physiotherapist", "Neuro-Physiotherapist", "Geriatric Physiotherapist"],
+        "Allied Health Sciences": {
+          "specializations": {
+            "Radiology": ["MRI Technician", "X-Ray Technologist", "Ultrasound Technician", "Nuclear Medicine Technologist"],
+            "Optometry": ["Optometrist", "Vision Consultant", "Contact Lens Specialist"],
+            "Medical Lab Technology": ["Pathology Technician", "Blood Bank Technician", "Histotechnologist"],
+            "Operation Theater Tech": ["Surgical Technologist", "Anesthesia Technician"],
+            "Cardiac Care Tech": ["Echocardiographer", "Cath Lab Technician", "Perfusionist"]
+          }
+        },
+        "B.Sc Agriculture": ["Agronomist", "Soil Scientist", "Plant Breeder", "Agricultural Loan Officer", "Agri-Tech Entrepreneur"],
+        "BVSc (Veterinary)": ["Veterinary Surgeon", "Livestock Development Officer", "Wildlife Veterinarian", "Equine Specialist"]
+      }
+    },
+    "PCM": {
+      "degrees": {
+        "B.Tech": {
+          "specializations": {
+            "CSE": ["Software Engineer", "AI/ML Engineer", "Data Scientist", "Cloud Architect"],
+            "ECE": ["VLSI Design Engineer", "Embedded Systems Developer", "IoT Solutions Engineer"],
+            "Mechanical": ["Robotics Engineer", "Automobile Designer", "Mechatronics Engineer"],
+            "Civil": ["Structural Engineer", "Urban Planner", "Geotechnical Engineer"],
+            "Electrical": ["Power Systems Engineer", "EV Battery Engineer", "Renewable Energy Consultant"],
+            "Metallurgical": ["Materials Engineer", "Corrosion Engineer", "Foundry Manager"]
+          }
+        },
+        "B.Arch": ["Residential Architect", "Landscape Architect", "Urban Designer", "Conservation Architect"],
+        "B.Plan": ["Regional Planner", "Transport Planner", "Smart City Consultant"],
+        "B.Sc Aviation": ["Commercial Pilot", "Air Traffic Controller", "Aviation Safety Inspector", "Flight Dispatcher"],
+        "B.Sc Nautical Science": ["Deck Officer", "Marine Superintendent", "Navigation Officer", "Harbor Master"],
+        "NDA (Defense)": ["Army Lieutenant", "Navy Sub-Lieutenant", "Air Force Flying Officer"]
+      }
+    }
+  },
+  "Commerce": {
+    "Accountancy & Finance": {
+      "degrees": {
+        "B.Com": {
+          "specializations": {
+            "General": ["Accountant", "Tax Consultant", "Audit Assistant", "Bookkeeper"],
+            "Banking & Insurance": ["Bank Probationary Officer (PO)", "Insurance Underwriter", "Loan Officer", "Claims Adjuster"],
+            "Financial Markets": ["Equity Researcher", "Stock Broker", "Mutual Fund Advisor", "Wealth Manager"],
+            "Accounting & Finance": ["Financial Analyst", "Corporate Treasurer", "Credit Analyst"]
+          }
+        },
+        "Professional Certifications": {
+          "specializations": {
+            "CA": ["Statutory Auditor", "Chief Financial Officer (CFO)", "Direct Tax Expert", "Forensic Accountant"],
+            "CS": ["Company Secretary", "Corporate Governance Officer", "Legal Compliance Officer", "Board Advisor"],
+            "CMA": ["Cost Accountant", "Pricing Strategist", "Management Accountant", "Operations Controller"],
+            "Global Accounting": ["ACCA Professional", "CPA (Certified Public Accountant)", "CFA (Chartered Financial Analyst)", "FRM (Financial Risk Manager)"]
+          }
+        }
+      }
+    },
+    "Economics & Statistics": {
+      "degrees": {
+        "B.A Economics": ["Macroeconomist", "Public Policy Analyst", "Economic Researcher", "Data Analyst"],
+        "B.Sc Statistics": ["Actuary", "Risk Modeler", "Data Scientist", "Biostatistician"]
+      }
+    },
+    "Management": {
+      "degrees": {
+        "BBA": {
+          "specializations": {
+            "Marketing": ["Digital Marketing Manager", "Brand Manager", "Market Research Analyst", "SEO Specialist"],
+            "Human Resources": ["Talent Acquisition Specialist", "HR Business Partner", "Compensation Manager", "L&D Manager"],
+            "Supply Chain": ["Logistics Coordinator", "Procurement Manager", "Operations Head", "Inventory Analyst"],
+            "FinTech": ["Blockchain Analyst", "Digital Payments Strategist", "Crypto Compliance Officer"],
+            "International Business": ["Export/Import Manager", "Global Operations Analyst", "Trade Compliance Officer"]
+          }
+        },
+        "MBA": ["Business Strategist", "Management Consultant", "Product Manager", "Venture Capital Analyst"]
+      }
+    }
+  },
+  "Arts": {
+    "Humanities": {
+      "degrees": {
+        "B.A. Psychology": {
+          "specializations": {
+            "Clinical": ["Clinical Psychologist", "Psychotherapist"],
+            "Counseling": ["School Counselor", "Career Counselor", "Marriage Therapist"],
+            "Industrial/Organizational": ["Corporate Trainer", "Organizational Development Consultant", "HR Assessor"]
+          }
+        },
+        "B.A. English": ["Writer", "Editor", "Content Strategist", "Copywriter", "Journalist", "Technical Writer"],
+        "B.A. History": ["Historian", "Archaeologist", "Museum Curator", "Academic Researcher", "Archivist"],
+        "B.A. Sociology": ["Social Worker", "Policy Analyst", "Researcher", "NGO Director", "Community Development Officer"],
+        "B.A. Political Science": ["Political Strategist", "Diplomat (IFS)", "Psephologist", "Public Relations Specialist", "Civil Servant (IAS/IPS)"],
+        "B.A. Foreign Languages": ["Translator", "Interpreter", "Embassy Liaison", "Localization Specialist"]
+      }
+    },
+    "Design": {
+      "degrees": {
+        "B.Des": {
+          "specializations": {
+            "Graphic Design": ["Graphic Designer", "Visual Identity Designer", "Typography Expert"],
+            "UI/UX Design": ["User Experience Researcher", "Interaction Designer", "Product Designer"],
+            "Fashion Design": ["Fashion Designer", "Apparel Merchandiser", "Textile Designer", "Stylist"],
+            "Industrial Design": ["Automotive Designer", "Consumer Electronics Designer", "Furniture Designer"],
+            "Animation & VFX": ["3D Modeler", "VFX Artist", "Character Animator", "Storyboard Artist"],
+            "Interior Design": ["Space Planner", "Commercial Interior Designer", "Set Designer"]
+          }
+        },
+        "M.Des": ["Design Researcher", "Creative Director", "Chief Design Officer"]
+      }
+    },
+    "Fine & Performing Arts": {
+      "degrees": {
+        "BFA": ["Painter", "Sculptor", "Illustrator", "Art Curator", "Commercial Artist"],
+        "BPA": ["Actor", "Dancer", "Musician", "Theatre Director", "Choreographer", "Sound Designer"]
+      }
+    },
+    "Mass Communication": {
+      "degrees": {
+        "BJMC": {
+          "specializations": {
+            "Journalism": ["Investigative Journalist", "News Editor", "Foreign Correspondent"],
+            "Broadcasting": ["News Anchor", "Video Producer", "Radio Jockey", "Documentary Filmmaker"],
+            "Advertising & PR": ["PR Executive", "Media Planner", "Ad Copywriter", "Corporate Communications Specialist"]
+          }
+        }
+      }
+    },
+    "Hospitality & Tourism": {
+      "degrees": {
+        "BHM": {
+          "specializations": {
+            "Culinary Arts": ["Executive Chef", "Pastry Chef", "Food Stylist", "Menu Consultant"],
+            "Hotel Operations": ["Hotel Manager", "Guest Relations Executive", "Event Manager"],
+            "Travel & Tourism": ["Travel Consultant", "Tour Operator", "Destination Manager", "Aviation Ground Staff"]
+          }
+        }
+      }
+    }
+  },
+  "Law": {
+    "Integrated Law (5-Year)": {
+      "degrees": {
+        "B.A. LL.B": {
+          "specializations": {
+            "Criminal Law": ["Public Prosecutor", "Criminal Defense Lawyer", "Criminologist"],
+            "Constitutional Law": ["Human Rights Lawyer", "Supreme Court Advocate", "Policy Litigator"]
+          }
+        },
+        "B.B.A. LL.B": {
+          "specializations": {
+            "Corporate Law": ["Corporate Counsel", "M&A Lawyer", "Legal Advisor", "Compliance Officer"],
+            "International Trade Law": ["Customs Lawyer", "Arbitrator", "International Trade Consultant"]
+          }
+        },
+        "B.Sc. LL.B": {
+          "specializations": {
+            "Cyber Law": ["Cybercrime Investigator", "Data Privacy Officer", "Technology Lawyer"],
+            "Intellectual Property Rights": ["Patent Attorney", "Trademark Lawyer", "Copyright Specialist"]
+          }
+        }
+      }
+    }
+  },
+  "Vocational & Skill": {
+    "Polytechnic (3-Year Diploma)": {
+      "degrees": {
+        "Diploma in Engineering": {
+          "specializations": {
+            "Mechanical": ["Junior Mechanical Engineer", "CNC Programmer", "Automobile Technician", "CAD Draftsman"],
+            "Civil": ["Surveyor", "Draftsman", "Site Supervisor", "Estimation Engineer"],
+            "Electrical": ["Maintenance Engineer", "Substation Operator", "Power Grid Technician", "Panel Board Designer"],
+            "Computer Science": ["Junior Software Developer", "Network Support Engineer", "Database Admin", "QA Tester"]
+          }
+        }
+      }
+    },
+    "ITI (Industrial Training)": {
+      "degrees": {
+        "Technical Trades": {
+          "specializations": {
+            "Electrician": ["Industrial Electrician", "Solar Installer", "Wireman", "Transformer Technician"],
+            "Fitter & Turner": ["Machine Fitter", "Lathe Operator", "Pipefitter", "Welder"],
+            "Motor Mechanic": ["Vehicle Inspector", "Auto Repair Specialist", "Heavy Machinery Mechanic"],
+            "AC & Refrigeration": ["HVAC Technician", "Cold Storage Operator", "Commercial AC Mechanic"]
+          }
+        }
+      }
+    },
+    "Aviation & Maritime Ratings": {
+      "degrees": {
+        "Aviation": ["Cabin Crew", "Ground Operations Staff", "Cargo Handling Agent", "Ramp Agent"],
+        "Maritime": ["Deck Rating", "Engine Rating", "Marine Cook", "Seafarer"]
+      }
+    }
+  }
+}

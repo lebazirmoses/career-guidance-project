@@ -1,0 +1,58 @@
+{
+  "profession": "Civil Engineer",
+  "category": "Engineering & Infrastructure",
+  "overview": "Plans, designs, constructs, and maintains infrastructure like roads, bridges, and buildings.",
+  "total_time_estimate": "4 - 6 Years",
+  "average_cost_estimate": {
+    "government": "₹50,000 - ₹2 Lakhs",
+    "private": "₹5 - ₹15 Lakhs"
+  },
+  "roadmap": [
+    {
+      "stage": "Class 11 & 12",
+      "duration": "2 Years",
+      "title": "Stream Selection & Foundation",
+      "mandatory_requirements": {
+        "stream": "Science (PCM)",
+        "subjects": ["Mathematics", "Physics", "Chemistry", "English"],
+        "minimum_board_score": "50% Aggregate in PCM"
+      },
+      "key_actions": [
+        "Focus on problem-solving in Mathematics and Physics.",
+        "Develop basic CAD and engineering visualization skills."
+      ]
+    },
+    {
+      "stage": "Entrance & Undergraduate",
+      "duration": "4 Years",
+      "title": "B.Tech / B.E. in Civil Engineering",
+      "description": "Core civil engineering concepts, structural design, and construction management.",
+      "entrance_exams": ["JEE Main", "JEE Advanced", "State CETs"],
+      "phases": [
+        {"name": "Year 1-2", "focus": ["Engineering Mechanics", "Mathematics", "Basic Physics"]},
+        {"name": "Year 3-4", "focus": ["Structural Engineering", "Surveying", "Construction Technology"]}
+      ]
+    },
+    {
+      "stage": "Internships & Training",
+      "duration": "Ongoing",
+      "title": "Practical Exposure",
+      "key_actions": [
+        "Intern in construction firms, infrastructure projects.",
+        "Use CAD/REVIT/STAAD for practical design experience."
+      ]
+    },
+    {
+      "stage": "Optional Postgraduate",
+      "duration": "2 Years",
+      "title": "M.Tech / Specializations",
+      "description": "Specializations in Structural, Transportation, Geotechnical, or Environmental Engineering."
+    },
+    {
+      "stage": "Certifications",
+      "duration": "Ongoing",
+      "title": "Professional Licenses & Upskilling",
+      "examples": ["Professional Engineer License", "Project Management Certifications"]
+    }
+  ]
+}

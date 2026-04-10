@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="max-w-6xl mx-auto space-y-10">
+
+    <!-- 🔷 HEADER -->
+    <div class="flex justify-between items-center">
+        <div>
+            <h1 class="text-3xl font-black text-slate-900">
+                Your AI Profiling Journey
+            </h1>
+            <p class="text-slate-500">
+                Build your profile → Take assessments → Unlock AI career insights
+            </p>
+        </div>
+
+        {% if profile_completion < 100 %}
+        <a href="{% url onboarding_url %}"
+           class="px-6 py-3 bg-blue-600 text-white rounded-xl font-bold shadow hover:bg-blue-700">
+            {% if profile_completion == 0 %}Start Profile{% else %}Continue Profile →{% endif %}
+        </a>
+        {% endif %}
+    </div>
+
+    <!-- 🔷 PROGRESS CARD -->
+    <div class="bg-white p-6 rounded-2xl border shadow-sm">
+        <div class="flex justify-between items-center mb-3">
+            <p class="text-sm font-bold">Profile Completion</p>
+            <p class="text-sm font-bold text-blue-600">{{ profile_completion }}%</p>
+        </div>
+
+        <div class="w-full bg-slate-100 h-2 rounded-full">
+            <div class="bg-blue-600 h-2 rounded-full transition-all duration-500"
+                 style="width: {{ profile_completion }}%">
+            </div>
+        </div>
+
+        <p class="text-xs text-slate-500 mt-2">
+            {% if profile_completion < 40 %}
+                Start by completing your academic details.
+            {% elif profile_completion < 70 %}
+                Good progress! Add skills & interests for better accuracy.
+            {% elif profile_completion < 100 %}
+                Almost there! Final details unlock better AI insights.
+            {% else %}
+                ✅ Profile complete! You’re ready for AI insights.
+            {% endif %}
+        </p>
+    </div>
+
+    <!-- 🔷 MODULE FLOW -->
+    <div class="grid md:grid-cols-3 gap-6">
+
+        <!-- 👤 PROFILE MODULE -->
+        <div class="p-6 bg-white rounded-2xl border shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+                <h3 class="font-bold text-lg">👤 Profile Setup</h3>
+                {% if profile_completion >= 60 %}
+                    <span class="text-green-600 text-sm font-bold">✓ Done</span>
+                {% else %}
+                    <span class="text-yellow-500 text-sm font-bold">In Progress</span>
+                {% endif %}
+            </div>
+
+            <p class="text-sm text-slate-500 mb-4">
+                Academic background, subjects, skills, and goals
+            </p>
+
+            <a href="{% url onboarding_url %}"
+               class="w-full block text-center py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700">
+                {% if profile_completion == 0 %}
+                    Start Profile
+                {% else %}
+                    Continue
+                {% endif %}
+            </a>
+        </div>
+
+        <!-- 🧠 ASSESSMENTS MODULE -->
+        <div class="p-6 bg-white rounded-2xl border shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+                <h3 class="font-bold text-lg">🧠 Assessments</h3>
+                {% if has_traits %}
+                    <span class="text-green-600 text-sm font-bold">✓ Completed</span>
+                {% elif profile_completion >= 60 %}
+                    <span class="text-blue-600 text-sm font-bold">Ready</span>
+                {% else %}
+                    <span class="text-slate-400 text-sm font-bold">Locked</span>
+                {% endif %}
+            </div>
+
+            <p class="text-sm text-slate-500 mb-4">
+                Personality, aptitude, and cognitive tests
+            </p>
+
+            {% if profile_completion >= 60 %}
+                <a href="{% url 'assessments:test_list' %}"
+                   class="w-full block text-center py-3 bg-slate-900 text-white rounded-xl font-semibold hover:bg-slate-800">
+                    {% if has_traits %}
+                        Retake / Improve
+                    {% else %}
+                        Start Tests
+                    {% endif %}
+                </a>
+            {% else %}
+                <button class="w-full py-3 bg-slate-200 text-slate-500 rounded-xl cursor-not-allowed">
+                    Complete Profile First
+                </button>
+            {% endif %}
+        </div>
+
+        <!-- 🤖 AI INSIGHTS MODULE -->
+        <div class="p-6 bg-white rounded-2xl border shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+                <h3 class="font-bold text-lg">🤖 AI Career Insights</h3>
+                {% if has_traits %}
+                    <span class="text-green-600 text-sm font-bold">✓ Ready</span>
+                {% else %}
+                    <span class="text-slate-400 text-sm font-bold">Locked</span>
+                {% endif %}
+            </div>
+
+            <p class="text-sm text-slate-500 mb-4">
+                Career matches, skill gaps & roadmap
+            </p>
+
+            {% if has_traits %}
+                <a href="{% url 'dashboard:home' %}"
+                   class="w-full block text-center py-3 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700">
+                    View Insights →
+                </a>
+            {% else %}
+                <button class="w-full py-3 bg-slate-200 text-slate-500 rounded-xl cursor-not-allowed">
+                    Complete Assessments
+                </button>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- 🔷 AI READINESS -->
+    <div class="bg-slate-900 text-white p-6 rounded-2xl">
+        <h4 class="font-bold text-lg mb-2">⚡ AI Readiness Score</h4>
+        {% if has_traits %}
+            <p class="text-slate-300">
+                Your AI profile is active. Career recommendations are now personalized.
+            </p>
+        {% else %}
+            <p class="text-slate-400">
+                Complete assessments to activate AI insights.
+            </p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

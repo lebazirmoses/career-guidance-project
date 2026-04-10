@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}FutureAI - AI Career Guide{% endblock %}</title>
+
+    <!-- TailwindCSS & Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+
+        /* Input Styles */
+        input[type="text"], input[type="email"], input[type="password"], 
+        input[type="date"], input[type="tel"], select {
+            width: 100%;
+            padding: 0.85rem 1.25rem;
+            background-color: #f8fafc; /* Slate-50 */
+            border: 1px solid #e2e8f0; /* Slate-200 */
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            transition: all 0.2s ease-in-out;
+        }
+        input:focus, select:focus {
+            outline: none;
+            background-color: #fff;
+            border-color: #4f46e5; /* Indigo-600 */
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+
+        /* Scrollbar for chat/content areas */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 6px; }
+
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white border-b border-slate-200 shadow-sm fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-blue-600">FutureAI</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-4 items-center">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'dashboard:home' %}" class="text-slate-600 hover:text-blue-600 font-semibold">Dashboard</a>
+                        <a href="{% url 'accounts:logout' %}" class="px-4 py-2 bg-slate-100 rounded-lg hover:bg-slate-200 font-semibold">Logout</a>
+                    {% else %}
+                        <a href="{% url 'accounts:login' %}" class="text-slate-600 hover:text-blue-600 font-semibold">Login</a>
+                        <a href="{% url 'accounts:register' %}" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold">Get Started</a>
+                    {% endif %}
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" class="text-slate-600 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-slate-200">
+            <div class="px-4 pt-4 pb-2 space-y-1">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'dashboard:home' %}" class="block text-slate-600 hover:text-blue-600 font-semibold">Dashboard</a>
+                    <a href="{% url 'accounts:logout' %}" class="block px-4 py-2 bg-slate-100 rounded-lg hover:bg-slate-200 font-semibold">Logout</a>
+                {% else %}
+                    <a href="{% url 'accounts:login' %}" class="block text-slate-600 hover:text-blue-600 font-semibold">Login</a>
+                    <a href="{% url 'accounts:register' %}" class="block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold">Get Started</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- GLOBAL SCRIPTS -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
+    {% block scripts %}{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="max-w-3xl mx-auto space-y-8 pb-20">
+
+    <!-- HEADER -->
+    <div class="sticky top-4 z-10 bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-slate-200 flex justify-between items-center shadow-sm">
+        <h2 class="font-bold text-slate-800">{{ test.name }}</h2>
+        <div id="timer" class="px-4 py-1 bg-red-50 text-red-600 rounded-lg font-mono font-bold">
+            {% if test.time_limit_mins %}{{ test.time_limit_mins }}:00{% else %}Untimed{% endif %}
+        </div>
+    </div>
+
+    <form method="POST" class="space-y-6">
+        {% csrf_token %}
+
+        {% for q in questions %}
+        <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+
+            <p class="text-xs font-bold text-indigo-600 uppercase mb-4">
+                Question {{ forloop.counter }}
+            </p>
+
+            <h3 class="text-xl font-semibold text-slate-800 mb-8">
+                {{ q.question_text }}
+            </h3>
+
+            <div class="space-y-3">
+
+                {% if q.question_type == 'mcq' %}
+                    {% for opt in q.options.all %}
+                    <label class="flex items-center p-4 border rounded-2xl hover:bg-slate-50 cursor-pointer">
+                        <input type="radio"
+                               name="q_{{ q.id }}"
+                               value="{{ opt.id }}"
+                               class="w-5 h-5 text-indigo-600"
+                               required>
+                        <span class="ml-4">{{ opt.text }}</span>
+                    </label>
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+        </div>
+        {% endfor %}
+
+        <button type="submit"
+                class="w-full py-5 bg-indigo-600 text-white font-bold rounded-2xl">
+            Submit Assessment
+        </button>
+    </form>
+
+</div>
+
+{% endblock %}

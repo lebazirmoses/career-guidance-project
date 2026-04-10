@@ -1,0 +1,134 @@
+[
+  {
+    "test_slug": "personality-core",
+    "question_text": "I enjoy solving complex problems that require deep analytical thinking.",
+    "type": "mcq",
+    "options": ["1", "2", "3", "4", "5"],
+    "trait_mapping": {
+      "investigative": 0.9,
+      "logical_reasoning": 0.4,
+      "openness": 0.3
+    }
+  },
+  {
+    "test_slug": "personality-core",
+    "question_text": "I find it easy to take charge of a group and lead them toward a goal.",
+    "type": "mcq",
+    "options": ["1", "2", "3", "4", "5"],
+    "trait_mapping": {
+      "leadership": 0.9,
+      "extraversion": 0.7,
+      "enterprising": 0.5
+    }
+  },
+  {
+    "test_slug": "cognitive-logic",
+    "question_text": "If FRIEND is coded as HUMJTK, how is CANDLE coded?",
+    "type": "timed",
+    "options": ["EDRFMH", "DCQGOH", "FDQGOH", "EYOBJC"],
+    "correct_answer": "FDQGOH",
+    "trait_mapping": {
+      "logical_reasoning": 1.0,
+      "processing_speed": 0.4
+    }
+  },
+  {
+    "test_slug": "behavioral-eq",
+    "question_text": "When a project fails, I spend more time analyzing the 'why' than worrying about the mistake.",
+    "type": "mcq",
+    "options": ["1", "2", "3", "4", "5"],
+    "trait_mapping": {
+      "resilience": 0.8,
+      "investigative": 0.5,
+      "neuroticism": -0.4
+    }
+  },
+  {
+    "test_slug": "riasec-interests",
+    "question_text": "I would enjoy assembling or repairing complex mechanical machinery.",
+    "type": "mcq",
+    "options": ["1", "2", "3", "4", "5"],
+    "trait_mapping": {
+      "realistic": 1.0,
+      "investigative": 0.4,
+      "artistic": -0.3
+    }
+  },
+  {
+    "test_slug": "riasec-interests",
+    "question_text": "I like expressing my ideas through design, sketching, or creative writing.",
+    "type": "mcq",
+    "options": ["1", "2", "3", "4", "5"],
+    "trait_mapping": {
+      "artistic": 1.0,
+      "openness": 0.6,
+      "conventional": -0.5
+    }
+  },
+  {
+    "test_slug": "riasec-interests",
+    "question_text": "I find satisfaction in teaching others or helping people solve personal problems.",
+    "type": "mcq",
+    "options": ["1", "2", "3", "4", "5"],
+    "trait_mapping": {
+      "social": 1.0,
+      "empathy": 0.7,
+      "agreeableness": 0.4
+    }
+  },
+  {
+    "test_slug": "behavioral-eq",
+    "question_text": "A teammate is visibly upset but trying to hide it. I usually notice their change in mood immediately.",
+    "type": "mcq",
+    "options": ["1", "2", "3", "4", "5"],
+    "trait_mapping": {
+      "empathy": 1.0,
+      "social_awareness": 0.8,
+      "extraversion": 0.3
+    }
+  },
+  {
+    "test_slug": "workplace-values",
+    "question_text": "It is more important for me to have complete creative autonomy than a high starting salary.",
+    "type": "mcq",
+    "options": ["1", "2", "3", "4", "5"],
+    "trait_mapping": {
+      "autonomy_preference": 1.0,
+      "intrinsic_motivation": 0.7,
+      "extrinsic_motivation": -0.8
+    }
+  },
+  {
+    "test_slug": "cognitive-spatial",
+    "question_text": "Imagine a cube. If you rotate it 90 degrees clockwise and then flip it vertically, where is the original 'Top' face?",
+    "type": "timed",
+    "options": ["Bottom", "Front", "Back", "Left Side"],
+    "correct_answer": "Front",
+    "trait_mapping": {
+      "spatial_reasoning": 1.0,
+      "logical_reasoning": 0.5
+    }
+  },
+  {
+    "test_slug": "growth-mindset",
+    "question_text": "I am willing to take a high-risk career move if the potential for innovation is great.",
+    "type": "mcq",
+    "options": ["1", "2", "3", "4", "5"],
+    "trait_mapping": {
+      "risk_appetite": 1.0,
+      "openness": 0.5,
+      "conventional": -0.7
+    }
+  },
+  {
+    "test_slug": "workplace-values",
+    "question_text": "I prefer jobs where my performance is measured by clear financial targets and bonuses.",
+    "type": "mcq",
+    "options": ["1", "2", "3", "4", "5"],
+    "trait_mapping": {
+      "extrinsic_motivation": 1.0,
+      "financial_drive": 0.9,
+      "enterprising": 0.6
+    }
+  }
+]

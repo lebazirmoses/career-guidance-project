@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="progress-bar" style="width: {{ percent }}%; height: 5px; background: blue;"></div>
+    <h2>Step {{ stage }}: {% if stage == 1 %}Academics{% elif stage == 2 %}Subjects{% else %}Profile{% endif %}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Next</button>
+    </form>
+{% endblock %}

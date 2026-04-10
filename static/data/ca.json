@@ -1,0 +1,50 @@
+{
+  "profession": "Chartered Accountant",
+  "category": "Finance & Accounting",
+  "overview": "Expert in taxation, auditing, financial management, and business advisory services.",
+  "total_time_estimate": "4 - 6 Years",
+  "average_cost_estimate": {
+    "government": "₹1 - 2 Lakhs (Institute Fees + Coaching)",
+    "private": "₹2 - 5 Lakhs"
+  },
+  "roadmap": [
+    {
+      "stage": "Class 11 & 12",
+      "duration": "2 Years",
+      "title": "Stream Selection & Foundation",
+      "mandatory_requirements": {
+        "stream": "Commerce",
+        "subjects": ["Accounts", "Business Studies", "Economics", "Mathematics / English"],
+        "minimum_board_score": "50% Aggregate"
+      },
+      "key_actions": ["Develop strong accounting fundamentals and logical reasoning skills."]
+    },
+    {
+      "stage": "CA Foundation",
+      "duration": "6 Months",
+      "title": "Entry-level Preparation",
+      "description": "Introduction to basic accounting, law, and business management.",
+      "exams": ["CA Foundation Exam"]
+    },
+    {
+      "stage": "CA Intermediate",
+      "duration": "1 - 1.5 Years",
+      "title": "In-depth Knowledge",
+      "description": "Study accounting, taxation, audit, law, and financial management."
+    },
+    {
+      "stage": "Articleship",
+      "duration": "3 Years",
+      "title": "Practical Training",
+      "description": "Mandatory practical exposure under a practicing CA firm.",
+      "key_actions": ["Work on audits, GST, income tax, financial reporting."]
+    },
+    {
+      "stage": "Final Exam & Certification",
+      "duration": "6 Months - 1 Year",
+      "title": "Become a Chartered Accountant",
+      "description": "Clear CA Final exams conducted by ICAI.",
+      "key_actions": ["Apply for membership in ICAI to practice independently."]
+    }
+  ]
+}

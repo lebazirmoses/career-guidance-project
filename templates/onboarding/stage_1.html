@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="max-w-2xl mx-auto">
+
+    <!-- Progress -->
+    <div class="w-full bg-slate-200 h-1.5 rounded-full mb-12">
+        <div class="bg-blue-600 h-1.5 rounded-full transition-all duration-500"
+             style="width: {{ percent }}%">
+        </div>
+    </div>
+
+    <!-- Card -->
+    <div class="bg-white p-10 rounded-[2.5rem] border border-slate-200 shadow-2xl shadow-slate-200/50">
+
+        <!-- 🔥 Dynamic Title -->
+        <h2 class="text-2xl font-bold text-slate-800 mb-8">
+            {% if stage == "school_low" %}
+                Tell us about your school life
+            {% elif stage == "school_high" %}
+                Your Stream & Subjects
+            {% elif stage == "undergraduate" %}
+                Your Degree Details
+            {% elif stage == "working" %}
+                Your Professional Info
+            {% else %}
+                Academic Background
+            {% endif %}
+        </h2>
+
+        <!-- 🔥 Smart Hint -->
+        <p class="text-sm text-slate-400 mb-6">
+            {% if stage == "school_low" %}
+                We’ll use this to explore your interests early.
+            {% elif stage == "school_high" %}
+                This helps us determine eligible careers (Doctor, Engineer, etc.)
+            {% elif stage == "undergraduate" %}
+                This helps align your degree with career paths.
+            {% endif %}
+        </p>
+
+        <form method="POST" class="space-y-6">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div>
+                    <label class="block text-xs font-black text-slate-400 uppercase tracking-widest mb-2">
+                        {{ field.label }}
+                    </label>
+                    {{ field }}
+                </div>
+            {% endfor %}
+
+            <button type="submit"
+                class="w-full py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-slate-800 transition flex items-center justify-center">
+                Continue →
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

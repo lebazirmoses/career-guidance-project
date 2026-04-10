@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="dashboard-container" style="padding: 2rem; max-width: 900px; margin: auto;">
+
+    <h1>AI Career Guidance Dashboard</h1>
+    <p>Ask questions about careers, degrees, internships, and job market trends.</p>
+
+    <div id="chat-window" style="border:1px solid #ccc; border-radius:8px; padding:1rem; height:400px; overflow-y:auto; background:#f9f9f9;">
+        <!-- Messages will appear here -->
+    </div>
+
+    <div style="margin-top:1rem; display:flex;">
+        <input id="user-input" type="text" placeholder="Ask me about careers..." style="flex:1; padding:0.5rem; border-radius:5px; border:1px solid #ccc;">
+        <button id="send-btn" style="margin-left:0.5rem; padding:0.5rem 1rem;">Send</button>
+    </div>
+
+</div>
+
+<script>
+const chatWindow = document.getElementById("chat-window");
+const input = document.getElementById("user-input");
+const sendBtn = document.getElementById("send-btn");
+
+let history = [];
+
+function addMessage(role, text) {
+    const div = document.createElement("div");
+    div.style.marginBottom = "0.8rem";
+    div.innerHTML = `<strong>${role}:</strong> ${text}`;
+    chatWindow.appendChild(div);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+}
+
+async function sendMessage() {
+    const question = input.value.trim();
+    if (!question) return;
+    
+    addMessage("You", question);
+    history.push({role:"user", content: question});
+    input.value = "";
+    
+    try {
+        const res = await fetch("{% url 'career_chat' %}", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({question, history})
+        });
+        const data = await res.json();
+        if(data.answer){
+            addMessage("AI", data.answer);
+            history.push({role:"assistant", content: data.answer});
+        } else {
+            addMessage("AI", "Sorry, something went wrong.");
+        }
+    } catch (err) {
+        addMessage("AI", "Error connecting to server.");
+        console.error(err);
+    }
+}
+
+sendBtn.addEventListener("click", sendMessage);
+input.addEventListener("keydown", (e) => { if(e.key === "Enter") sendMessage(); });
+</script>
+
+{% endblock %}

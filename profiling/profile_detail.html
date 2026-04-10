@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="profile-grid">
+    <div class="sidebar">
+        <img src="https://ui-avatars.com/api/?name={{ user.full_name }}&background=random" alt="Avatar">
+        <h2>{{ user.full_name }}</h2>
+        <p>{{ user.get_education_level_display }}</p>
+    </div>
+
+    <div class="main-profile">
+        <h3>Academic Snapshot</h3>
+        <ul>
+            <li><strong>Board:</strong> {{ user.profile.board }}</li>
+            <li><strong>Stream:</strong> {{ user.profile.stream }}</li>
+            <li><strong>Strong Subjects:</strong> {{ user.profile.strong_subjects|join:", " }}</li>
+        </ul>
+
+        <h3>Trait Analysis</h3>
+        <p>These scores update as you take more tests.</p>
+        <div class="trait-bars">
+            {% for trait, value in user.trait_vector.to_dict.items %}
+                <div class="trait-item">
+                    <span>{{ trait|title }}</span>
+                    <div class="progress-bg">
+                        <div class="progress-fill" style="width: {{ value|add:value }}%;"></div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

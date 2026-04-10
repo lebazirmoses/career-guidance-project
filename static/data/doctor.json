@@ -1,0 +1,93 @@
+{
+  "profession": "Doctor (Allopathic / MBBS)",
+  "category": "Healthcare & Medical",
+  "overview": "A highly respected and rigorous 10+ year journey focusing on the diagnosis, treatment, and prevention of illnesses.",
+  "total_time_estimate": "10 - 14 Years",
+  "average_cost_estimate": {
+    "government": "₹50,000 - ₹5 Lakhs",
+    "private": "₹50 Lakhs - ₹1.5 Crores"
+  },
+  "roadmap": [
+    {
+      "stage": "Class 11 & 12",
+      "duration": "2 Years",
+      "title": "Stream Selection & Foundation",
+      "mandatory_requirements": {
+        "stream": "Science",
+        "subjects": ["Physics", "Chemistry", "Biology (PCB)", "English"],
+        "minimum_board_score": "50% Aggregate in PCB (40-45% for Reserved)"
+      },
+      "key_actions": [
+        "Master NCERT Textbooks for Biology, Chemistry, and Physics.",
+        "Enroll in NEET coaching or structured self-study programs."
+      ],
+      "exams_to_prepare": ["NEET-UG"]
+    },
+    {
+      "stage": "Entrance Phase",
+      "duration": "1 Year",
+      "title": "NEET-UG Examination",
+      "description": "The singular gateway to all recognized medical colleges in India.",
+      "exam_details": {
+        "name": "National Eligibility cum Entrance Test (NEET-UG)",
+        "target_score": ">600/720 for Government Colleges",
+        "frequency": "Once a year"
+      },
+      "alternatives_if_low_score": [
+        "Take a drop year to prepare again",
+        "Opt for BDS (Dental), BAMS (Ayurveda), or BHMS (Homeopathy)",
+        "Pursue MBBS abroad (requires clearing FMGE/NExT later)"
+      ]
+    },
+    {
+      "stage": "Undergraduate",
+      "duration": "5.5 Years",
+      "title": "MBBS Degree",
+      "description": "Bachelor of Medicine and Bachelor of Surgery.",
+      "phases": [
+        {
+          "name": "Academic Study",
+          "duration": "4.5 Years",
+          "focus": ["Anatomy", "Physiology", "Pathology", "Pharmacology", "Surgery Basics"]
+        },
+        {
+          "name": "Compulsory Rotating Internship",
+          "duration": "1 Year",
+          "focus": ["Hands-on clinical experience across various hospital departments"]
+        }
+      ],
+      "exit_exam": "NExT (National Exit Test) - Replacing NEET-PG for licensing and PG admissions."
+    },
+    {
+      "stage": "Registration & Practice",
+      "duration": "Ongoing",
+      "title": "State/National Medical Council",
+      "description": "Mandatory registration to legally practice medicine in India.",
+      "key_actions": [
+        "Register with State Medical Council or National Medical Commission (NMC)"
+      ]
+    },
+    {
+      "stage": "Postgraduate (Specialization)",
+      "duration": "3 Years",
+      "title": "MD / MS Programs",
+      "description": "Required to become a specialist (e.g., Surgeon, Pediatrician).",
+      "entrance_exam": "NEET-PG (Transitioning to NExT)",
+      "paths": {
+        "MD (Doctor of Medicine)": ["General Medicine", "Pediatrics", "Psychiatry", "Radiology"],
+        "MS (Master of Surgery)": ["General Surgery", "Orthopedics", "ENT", "Ophthalmology"]
+      }
+    },
+    {
+      "stage": "Super Specialization (Optional)",
+      "duration": "3 Years",
+      "title": "DM / MCh Programs",
+      "description": "Highly specialized focus.",
+      "entrance_exam": "NEET-SS",
+      "paths": {
+        "DM": ["Cardiology", "Neurology", "Endocrinology"],
+        "MCh": ["Cardiothoracic Surgery", "Neurosurgery", "Plastic Surgery"]
+      }
+    }
+  ]
+}

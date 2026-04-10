@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="max-w-2xl mx-auto">
+
+    <!-- PROGRESS -->
+    <div class="w-full bg-slate-200 h-1.5 rounded-full mb-10">
+        <div class="bg-blue-600 h-1.5 rounded-full transition-all duration-500"
+             style="width: {{ percent }}%"></div>
+    </div>
+
+    <!-- CARD -->
+    <div class="bg-white p-10 rounded-[2.5rem] border shadow-2xl">
+
+        <!-- TITLE -->
+        <h2 class="text-2xl font-bold mb-4 text-slate-800">
+            {{ title }}
+        </h2>
+
+        <!-- 🔥 SMART HINTS -->
+        <p class="text-sm text-slate-400 mb-6">
+            {% if title == "Tell us about your school" %}
+                This helps us understand your early interests.
+            {% elif title == "Your Stream & Subjects" %}
+                This determines eligible careers like Engineering, Medicine, etc.
+            {% elif title == "Your Degree Details" %}
+                This aligns your degree with career paths.
+            {% elif title == "Your Professional Info" %}
+                This helps us suggest career growth and transitions.
+            {% else %}
+                Provide accurate details for better AI recommendations.
+            {% endif %}
+        </p>
+
+        <form method="POST" class="space-y-6">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-2">
+                        {{ field.label }}
+                    </label>
+
+                    {{ field }}
+
+                    {% if field.help_text %}
+                        <p class="text-xs text-slate-400 mt-1">
+                            {{ field.help_text }}
+                        </p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <button type="submit"
+                class="w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition">
+                Continue →
+            </button>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

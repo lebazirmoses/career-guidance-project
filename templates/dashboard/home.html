@@ -1,0 +1,379 @@
+{% extends "base.html" %}
+{% load dashboard_extras %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto space-y-10 pb-16">
+
+  <!-- HEADER -->
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div>
+      <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight">
+        Dashboard Intelligence
+      </h1>
+      <p class="text-slate-500 mt-1">
+        Welcome back, {{ user.full_name }}. Your AI insights are evolving.
+      </p>
+    </div>
+
+    <div class="flex items-center space-x-2 bg-gradient-to-r from-indigo-50 to-indigo-100 px-5 py-2 rounded-xl border border-indigo-200 shadow-sm">
+      <span class="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></span>
+      <span class="text-xs font-black uppercase text-indigo-700 tracking-widest">
+        AI Engine Active
+      </span>
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+    <!-- LEFT -->
+    <div class="lg:col-span-2 space-y-8">
+
+      <!-- STATS -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        
+        <!-- Profile -->
+        <div class="bg-white p-6 rounded-3xl border shadow-sm hover:shadow-lg transition">
+          <h3 class="text-xs font-black text-slate-400 uppercase mb-3">Profile Strength</h3>
+          <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
+            <div class="bg-indigo-600 h-full transition-all duration-700"
+                 style="width: {{ onboarding_percent|default:0 }}%">
+            </div>
+          </div>
+          <p class="text-sm font-semibold mt-2">
+            {{ onboarding_percent|default:0 }}% Complete
+          </p>
+        </div>
+
+        <!-- Tests -->
+        <div class="bg-white p-6 rounded-3xl border shadow-sm hover:shadow-lg transition">
+          <h3 class="text-xs font-black text-slate-400 uppercase mb-3">Assessments</h3>
+          <p class="text-3xl font-black">
+            {{ completed_tests_count }} 
+            <span class="text-sm text-slate-400">/ {{ total_tests }}</span>
+          </p>
+          <p class="text-xs text-slate-500 mt-1">Modules completed</p>
+        </div>
+
+      </div>
+
+      <!-- PSYCHOMETRIC SIGNATURE -->
+      <div class="bg-white p-6 rounded-3xl border shadow-sm">
+
+        <div class="flex justify-between items-center mb-5">
+          <h2 class="text-lg font-bold flex items-center">
+            <span class="w-2 h-5 bg-indigo-600 rounded mr-2"></span>
+            Psychometric Signature
+          </h2>
+
+          {% if has_traits %}
+          <button id="toggleTraits" class="text-xs font-bold text-indigo-600 hover:underline">
+            View Full →
+          </button>
+          {% endif %}
+        </div>
+
+        {% if has_traits %}
+        <div class="grid md:grid-cols-2 gap-6">
+
+          <!-- TRAITS -->
+          <div>
+
+            <!-- TOP -->
+            <div id="topTraits" class="space-y-3">
+              {% for trait,value in traits.items|slice:":5" %}
+              <div>
+                <div class="flex justify-between text-xs font-semibold text-slate-500">
+                  <span>{{ trait|clean_trait }}</span>
+                  <span class="text-indigo-600">{{ value|floatformat:2 }}</span>
+                </div>
+                <div class="w-full bg-slate-100 h-2 rounded">
+                  <div class="bg-indigo-600 h-2 rounded"
+                       style="width:{% widthratio value 1 100 %}%"></div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+
+            <!-- FULL -->
+            <div id="allTraits" class="hidden max-h-60 overflow-y-auto pr-2 space-y-3 mt-3">
+              {% for trait,value in traits.items %}
+              <div>
+                <div class="flex justify-between text-xs text-slate-500">
+                  <span>{{ trait|clean_trait }}</span>
+                  <span class="text-indigo-600">{{ value|floatformat:2 }}</span>
+                </div>
+                <div class="w-full bg-slate-100 h-2 rounded">
+                  <div class="bg-indigo-600 h-2 rounded"
+                       style="width:{% widthratio value 1 100 %}%"></div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+
+          </div>
+
+          <!-- RADAR -->
+          <div class="bg-slate-50 p-3 rounded-xl">
+            <canvas id="traitRadarMap" style="max-height:250px"></canvas>
+          </div>
+
+        </div>
+
+        {% else %}
+        <div class="text-center py-10 text-slate-500">
+          Complete assessments to unlock your psychometric profile.
+        </div>
+        {% endif %}
+      </div>
+
+      {% if ai_summary %}
+<div class="bg-gradient-to-br from-purple-600 to-indigo-600 text-white p-6 rounded-3xl shadow-xl">
+  <h2 class="text-lg font-bold mb-2">🧠 AI Personality Insight</h2>
+  <p class="text-sm leading-relaxed whitespace-pre-line">
+    {{ ai_summary }}
+  </p>
+</div>
+{% endif %}
+
+      <!-- CAREER MATCHES -->
+      {% if has_traits and ai_matches %}
+      <div class="bg-white p-6 rounded-3xl border shadow-sm">
+        <h2 class="text-lg font-bold mb-4 flex items-center">
+          <span class="w-2 h-5 bg-emerald-500 rounded mr-2"></span>
+          Career Matches
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          {% for match in ai_matches %}
+          <div class="p-4 rounded-xl border hover:shadow-lg transition">
+
+            <div class="flex justify-between items-center mb-2">
+              <h4 class="font-bold text-sm">{{ match.career.name }}</h4>
+              <span class="text-xs font-bold text-emerald-600">
+                {{ match.match_percentage }}%
+              </span>
+            </div>
+
+            <p class="text-xs text-slate-500 line-clamp-3">
+              {{ match.career.description }}
+            </p>
+
+            {% if match.gaps %}
+            <div class="flex flex-wrap gap-1 mt-2">
+              {% for gap in match.gaps %}
+              <span class="text-[10px] bg-amber-100 text-amber-700 px-2 py-0.5 rounded">
+                {{ gap }}
+              </span>
+              {% endfor %}
+            </div>
+            {% endif %}
+
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="space-y-6">
+
+      <!-- MISSION -->
+      <div class="bg-gradient-to-br from-indigo-600 to-indigo-500 text-white p-6 rounded-3xl shadow-xl">
+        <h3 class="text-xs uppercase text-indigo-200 mb-2">Current Mission</h3>
+        <h2 class="text-xl font-bold mb-4">{{ next_action.title }}</h2>
+
+        <a href="{% url next_action.link %}"
+           class="block text-center py-3 bg-white text-indigo-600 font-bold rounded-xl hover:scale-105 transition">
+           Execute Mission →
+        </a>
+      </div>
+
+      <!-- AI ROADMAP -->
+      {% if has_traits %}
+      <div class="bg-slate-900 text-white p-5 rounded-3xl shadow-xl">
+        <h3 class="text-xs text-indigo-400 uppercase mb-3">AI Career Architect</h3>
+        <div class="text-sm text-slate-300 max-h-60 overflow-y-auto whitespace-pre-wrap">
+          {{ gemini_roadmap }}
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- QUICK LINKS -->
+      <div class="space-y-3">
+        <a href="{% url 'dashboard:career_roadmap' %}"
+           class="block p-4 bg-indigo-600 text-white rounded-xl text-center font-semibold">
+           Career Roadmap →
+        </a>
+
+        <a href="{% url 'dashboard:career_tree' %}"
+           class="block p-4 bg-indigo-100 text-indigo-700 rounded-xl text-center font-semibold">
+           Career Tree →
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- CHATBOT -->
+<div id="careerChatbotButton" class="fixed bottom-6 right-6 w-14 h-14 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg cursor-pointer">
+  💬
+</div>
+
+<div id="careerChatbotModal" class="fixed inset-0 bg-black/40 hidden items-end justify-center">
+  <div class="bg-white w-full max-w-md rounded-t-2xl p-4 h-96 flex flex-col">
+
+    <div class="flex justify-between mb-2">
+      <h3 class="font-bold">AI Career Assistant</h3>
+      <button id="closeChatbot">✕</button>
+    </div>
+
+    <div id="chatContent" class="flex-1 overflow-y-auto space-y-2 text-sm bg-gray-50 p-2 rounded"></div>
+
+    <div class="flex gap-2 mt-2">
+      <input id="chatInput" class="flex-1 border rounded px-2" placeholder="Ask...">
+      <button id="sendChat" class="bg-emerald-500 text-white px-3 rounded">Send</button>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+  let history = [];
+
+  const chatbotBtn = document.getElementById('careerChatbotButton');
+  const chatbotModal = document.getElementById('careerChatbotModal');
+  const closeBtn = document.getElementById('closeChatbot');
+  const sendBtn = document.getElementById('sendChat');
+  const chatInput = document.getElementById('chatInput');
+  const chatContent = document.getElementById('chatContent');
+
+  chatbotBtn.onclick = () => {
+    chatbotModal.classList.remove('hidden');
+    chatbotModal.classList.add('flex');
+    chatInput.focus();
+  };
+
+  closeBtn.onclick = () => {
+    chatbotModal.classList.add('hidden');
+    chatbotModal.classList.remove('flex');
+  };
+
+  function appendMessage(text, sender='bot'){
+    const msgDiv = document.createElement('div');
+    msgDiv.className = sender === 'user' ? 'text-right' : 'text-left';
+
+    msgDiv.innerHTML = `
+      <span class="${sender==='user'
+        ? 'bg-emerald-100 text-emerald-800'
+        : 'bg-gray-100 text-gray-800'} 
+        px-3 py-2 rounded-xl inline-block max-w-[80%]">
+        ${text}
+      </span>
+    `;
+
+    chatContent.appendChild(msgDiv);
+    chatContent.scrollTop = chatContent.scrollHeight;
+  }
+
+  async function sendMessage(){
+    const userMsg = chatInput.value.trim();
+    if(!userMsg) return;
+
+    appendMessage(userMsg, 'user');
+
+    history.push({role:"user", content:userMsg});
+
+    chatInput.value = '';
+
+    const typing = document.createElement('div');
+    typing.innerHTML = `<span class="text-gray-400 text-sm">Typing...</span>`;
+    chatContent.appendChild(typing);
+
+    try{
+      const res = await fetch("{% url 'dashboard:career_chat' %}", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          question: userMsg,
+          history: history
+        })
+      });
+
+      const data = await res.json();
+      typing.remove();
+
+      if(data.answer){
+        appendMessage(data.answer, 'bot');
+        history.push({role:"assistant", content:data.answer});
+      } else {
+        appendMessage("⚠️ AI error. Try again.", 'bot');
+      }
+
+    } catch(err){
+      typing.remove();
+      appendMessage("❌ Server error.", 'bot');
+    }
+  }
+
+  sendBtn.onclick = sendMessage;
+  chatInput.addEventListener('keydown', e=>{
+    if(e.key === 'Enter') sendMessage();
+  });
+
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const traitData = {{ traits|safe }};
+
+  if (traitData && Object.keys(traitData).length > 0) {
+
+    const labels = Object.keys(traitData).slice(0, 6); // limit for clean UI
+    const values = Object.values(traitData).slice(0, 6).map(v => v * 100);
+
+    const ctx = document.getElementById("traitRadarMap");
+
+    new Chart(ctx, {
+      type: 'radar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Your Traits',
+          data: values,
+          fill: true,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          r: {
+            beginAtZero: true,
+            max: 100,
+            ticks: {
+              display: false
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+
+  }
+});
+</script>
+{% endblock %}

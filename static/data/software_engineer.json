@@ -1,0 +1,66 @@
+{
+  "profession": "Software Engineer / Full Stack Developer",
+  "category": "Information Technology",
+  "overview": "Designs, develops, tests, and maintains software applications across the tech stack, from front-end to back-end.",
+  "total_time_estimate": "4 - 6 Years",
+  "average_cost_estimate": {
+    "government": "₹0 - ₹1 Lakh (Public colleges)",
+    "private": "₹5 - ₹20 Lakhs"
+  },
+  "roadmap": [
+    {
+      "stage": "Class 11 & 12",
+      "duration": "2 Years",
+      "title": "Stream Selection & Foundation",
+      "mandatory_requirements": {
+        "stream": "Science (PCM) or Commerce (optional)",
+        "subjects": ["Mathematics", "Physics", "Computer Science (if available)", "English"],
+        "minimum_board_score": "60% Aggregate in PCM"
+      },
+      "key_actions": [
+        "Focus on Mathematics, particularly logic and problem-solving.",
+        "Start coding basics (Python, C++, Java)."
+      ]
+    },
+    {
+      "stage": "Entrance & Undergraduate",
+      "duration": "4 Years",
+      "title": "B.Tech / B.E. in Computer Science or IT",
+      "description": "Core engineering program with programming, databases, algorithms, and networking.",
+      "entrance_exams": ["JEE Main", "JEE Advanced", "State CETs"],
+      "phases": [
+        {
+          "name": "Year 1-2",
+          "focus": ["Basic programming", "Discrete Mathematics", "Computer Architecture"]
+        },
+        {
+          "name": "Year 3-4",
+          "focus": ["Data Structures", "Algorithms", "Database Systems", "Web & Mobile Development"]
+        }
+      ]
+    },
+    {
+      "stage": "Internships & Skill Development",
+      "duration": "Ongoing",
+      "title": "Practical Exposure",
+      "key_actions": [
+        "Summer internships in IT companies.",
+        "Participate in hackathons, open source contributions.",
+        "Build portfolio projects (web apps, mobile apps)."
+      ]
+    },
+    {
+      "stage": "Optional Postgraduate",
+      "duration": "2 Years",
+      "title": "M.Tech / MCA",
+      "description": "Advanced specialization in AI, Cloud, Data Science, or Full Stack.",
+      "entrance_exams": ["GATE", "NIMCET"]
+    },
+    {
+      "stage": "Certifications",
+      "duration": "Ongoing",
+      "title": "Professional Upskilling",
+      "examples": ["AWS Solutions Architect", "React JS Certification", "Google Cloud", "Scrum Master"]
+    }
+  ]
+}

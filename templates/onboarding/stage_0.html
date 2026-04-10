@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-2xl mx-auto text-center py-20 bg-white rounded-[3rem] border border-slate-200 shadow-2xl px-10">
+
+    <div class="w-20 h-20 bg-blue-100 text-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-8">
+        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+        </svg>
+    </div>
+
+    <h1 class="text-4xl font-black text-slate-900 mb-4">
+        Welcome to FutureAI
+    </h1>
+
+    <p class="text-slate-500 text-lg mb-10">
+        Let’s build your academic profile first. This helps us guide you better.
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit"
+            class="px-10 py-4 bg-blue-600 text-white font-black rounded-2xl hover:bg-blue-700 transition shadow-xl shadow-blue-200">
+            Let's Get Started →
+        </button>
+    </form>
+
+</div>
+{% endblock %}

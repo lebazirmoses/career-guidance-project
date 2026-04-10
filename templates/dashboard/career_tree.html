@@ -1,0 +1,385 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="text-3xl font-bold mb-4 text-slate-800">
+  🌳 AI Career Universe
+</h2>
+
+<!-- XP BAR -->
+<div class="mb-4">
+  <div class="flex justify-between text-sm mb-1">
+    <span>XP Level</span>
+    <span id="xpText">0 XP</span>
+  </div>
+  <div class="w-full bg-gray-200 h-3 rounded">
+    <div id="xpBar" class="bg-indigo-600 h-3 rounded"></div>
+  </div>
+</div>
+
+<!-- AI SUGGESTION -->
+<div id="aiSuggestion"
+     class="mb-4 p-3 bg-indigo-100 text-indigo-700 rounded-lg hidden">
+</div>
+
+<!-- GRAPH -->
+<div id="tree"
+     class="w-full h-[500px] bg-slate-900 rounded-2xl shadow-inner">
+</div>
+
+<!-- HEATMAP -->
+<div class="mt-6 bg-white p-4 rounded-xl shadow">
+  <h3 class="font-bold mb-3">📊 Skill Heatmap</h3>
+  <div id="heatmap" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+</div>
+
+<!-- MODAL -->
+<div id="modal"
+     class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-50">
+
+  <div class="bg-white p-6 rounded-2xl w-[600px] max-h-[85vh] overflow-y-auto">
+
+    <h3 id="modal-title" class="text-xl font-bold mb-2"></h3>
+    <p id="modal-desc" class="text-sm mb-3"></p>
+
+    <div class="mb-3">
+      <div class="font-semibold">Match Score</div>
+      <div class="w-full bg-gray-200 h-3 rounded">
+        <div id="score-bar" class="bg-green-500 h-3 rounded"></div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <div class="font-semibold">AI Roadmap</div>
+      <p id="roadmap" class="text-sm whitespace-pre-line"></p>
+    </div>
+
+    <button onclick="closeModal()"
+            class="mt-4 px-4 py-2 bg-red-500 text-white rounded">
+      Close
+    </button>
+  </div>
+</div>
+
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
+<script>
+let nodes = new vis.DataSet([]);
+let edges = new vis.DataSet([]);
+
+let xp = 0;
+let visited = new Set();
+
+const container = document.getElementById("tree");
+
+const network = new vis.Network(container, {
+  nodes,
+  edges
+}, {
+  nodes: {
+    shape: "dot",
+    size: 18,
+    font: { color: "#fff" }
+  },
+  edges: {
+    color: "#888"
+  },
+  physics: {
+    stabilization: false
+  }
+});
+
+// INIT ROOT
+init();
+
+// ============================
+// INIT
+// ============================
+function init() {
+
+  fetch("/career/api/children/")
+  .then(res => res.json())
+  .then(data => {
+
+    nodes.clear();
+    edges.clear();
+
+    data.nodes.forEach((n, i) => {
+      nodes.add({
+        id: n.id,
+        label: n.name,
+        color: "#6366f1"
+      });
+    });
+
+  });
+}
+
+// ============================
+// CLICK NODE
+// ============================
+network.on("click", function (params) {
+
+  if (!params.nodes.length) return;
+
+  const nodeId = params.nodes[0];
+
+  if (!visited.has(nodeId)) {
+    xp += 10;
+    visited.add(nodeId);
+    updateXP();
+  }
+
+  expandNode(nodeId);
+  suggestNext(nodeId);
+});
+
+// ============================
+// EXPAND NODE
+// ============================
+function expandNode(id) {
+
+  fetch(`/career/api/children/?parent_id=${id}`)
+  .then(res => res.json())
+  .then(data => {
+
+    data.nodes.forEach(n => {
+
+      if (!nodes.get(n.id)) {
+        nodes.add({
+          id: n.id,
+          label: n.name,
+          color: "#10b981"
+        });
+
+        edges.add({
+          from: id,
+          to: n.id
+        });
+      }
+    });
+
+  });
+}
+
+// ============================
+// AI AUTO NAVIGATION
+// ============================
+function suggestNext(id) {
+
+  fetch(`/career/api/children/?parent_id=${id}`)
+  .then(res => res.json())
+  .then(data => {
+
+    if (!data.nodes.length) return;
+
+    // pick best node (simple AI ranking simulation)
+    let best = data.nodes[0];
+
+    document.getElementById("aiSuggestion").classList.remove("hidden");
+    document.getElementById("aiSuggestion").innerText =
+      "🧠 AI suggests: " + best.name;
+  });
+}
+
+// ============================
+// XP SYSTEM
+// ============================
+function updateXP() {
+
+  document.getElementById("xpText").innerText = xp + " XP";
+
+  let percent = Math.min(xp, 100);
+
+  document.getElementById("xpBar").style.width = percent + "%";
+}
+
+// ============================
+// HEATMAP
+// ============================
+function loadHeatmap(traits) {
+
+  const container = document.getElementById("heatmap");
+  container.innerHTML = "";
+
+  Object.entries(traits).forEach(([k, v]) => {
+
+    const box = document.createElement("div");
+
+    const intensity = Math.floor(v * 255);
+
+    box.className = "p-3 rounded text-white text-center";
+
+    box.style.background = `rgb(${intensity}, 100, 150)`;
+
+    box.innerText = k + " " + Math.round(v * 100) + "%";
+
+    container.appendChild(box);
+  });
+}
+
+// LOAD USER TRAITS
+loadHeatmap({{ traits|safe }});
+
+// ============================
+// DETAILS
+// ============================
+function showDetails(name) {
+
+  fetch(`/career/api/details/?name=${name}`)
+  .then(res => res.json())
+  .then(data => {
+
+    document.getElementById("modal-title").innerText = data.name;
+    document.getElementById("modal-desc").innerText = data.description;
+    document.getElementById("score-bar").style.width = data.match_score + "%";
+    document.getElementById("roadmap").innerText = data.ai_path;
+
+    document.getElementById("modal").classList.remove("hidden");
+  });
+}
+
+function closeModal() {
+  document.getElementById("modal").classList.add("hidden");
+}
+</script>
+<script>
+let nodes = new vis.DataSet([]);
+let edges = new vis.DataSet([]);
+let xp = 0;
+let visited = new Set();
+
+const container = document.getElementById("tree");
+
+const network = new vis.Network(container, { nodes, edges }, {
+  nodes: { shape: "dot", size: 18, font: { color: "#fff" } },
+  edges: { color: "#888" },
+  physics: { stabilization: false }
+});
+
+// INIT ROOT
+init();
+
+// ============================
+// INIT
+// ============================
+function init() {
+  fetch("/career/api/children/")
+    .then(res => res.json())
+    .then(data => {
+      nodes.clear();
+      edges.clear();
+      data.nodes.forEach(n => {
+        nodes.add({ id: n.id, label: n.name, color: "#6366f1" });
+      });
+    });
+}
+
+// ============================
+// NODE CLICK
+// ============================
+network.on("click", params => {
+  if (!params.nodes.length) return;
+  const nodeId = params.nodes[0];
+
+  if (!visited.has(nodeId)) {
+    xp += 10;
+    visited.add(nodeId);
+    updateXP();
+  }
+
+  expandNode(nodeId);
+  suggestNext(nodeId);
+  showDetailsById(nodeId);
+});
+
+// ============================
+// EXPAND NODE
+// ============================
+function expandNode(id) {
+  fetch(`/career/api/children/?parent_id=${id}`)
+    .then(res => res.json())
+    .then(data => {
+      data.nodes.forEach(n => {
+        if (!nodes.get(n.id)) {
+          nodes.add({ id: n.id, label: n.name, color: "#10b981" });
+          edges.add({ from: id, to: n.id });
+        }
+      });
+    });
+}
+
+// ============================
+// AI SUGGESTION
+// ============================
+function suggestNext(id) {
+  fetch(`/career/api/children/?parent_id=${id}`)
+    .then(res => res.json())
+    .then(data => {
+      if (!data.nodes.length) return;
+
+      // 🌟 Use AI ranking if available
+      let best = data.nodes.find(n => n.rank === 1) || data.nodes[0];
+
+      document.getElementById("aiSuggestion").classList.remove("hidden");
+      document.getElementById("aiSuggestion").innerText =
+        "🧠 AI suggests: " + best.name;
+
+      // Highlight AI suggestion in tree
+      nodes.update({ id: best.id, color: "#facc15" });
+    });
+}
+
+// ============================
+// XP SYSTEM
+// ============================
+function updateXP() {
+  document.getElementById("xpText").innerText = xp + " XP";
+  const percent = Math.min(xp, 100);
+  document.getElementById("xpBar").style.width = percent + "%";
+}
+
+// ============================
+// HEATMAP
+// ============================
+function loadHeatmap(traits) {
+  const container = document.getElementById("heatmap");
+  container.innerHTML = "";
+
+  Object.entries(traits).forEach(([k, v]) => {
+    const box = document.createElement("div");
+    box.className = "p-3 rounded text-white text-center font-semibold";
+
+    // Gradient coloring: red (0) → green (1)
+    const green = Math.floor(v * 255);
+    const red = 255 - green;
+    box.style.background = `rgb(${red},${green},50)`;
+
+    box.innerText = `${k}: ${Math.round(v * 100)}%`;
+    container.appendChild(box);
+  });
+}
+
+// LOAD USER TRAITS
+loadHeatmap({{ traits|safe }});
+
+// ============================
+// MODAL / DETAILS
+// ============================
+function showDetailsById(id) {
+  fetch(`/career/api/details/?id=${id}`)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("modal-title").innerText = data.name;
+      document.getElementById("modal-desc").innerText = data.description;
+      document.getElementById("score-bar").style.width = data.match_score + "%";
+      document.getElementById("roadmap").innerText = data.ai_path;
+      document.getElementById("modal").classList.remove("hidden");
+    });
+}
+
+function closeModal() {
+  document.getElementById("modal").classList.add("hidden");
+}
+</script>
+
+{% endblock %}

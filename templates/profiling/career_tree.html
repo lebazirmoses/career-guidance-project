@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Career Tree & Recommendations{% endblock %}
+
+{% block content %}
+<div class="container mx-auto p-4">
+    <h2 class="text-2xl font-bold mb-4">Your Career Tree & Top Matches</h2>
+
+    <div id="tree" class="mb-6"></div>
+
+    <h3 class="text-xl font-semibold mb-2">Top Career Matches</h3>
+    <ul class="list-disc pl-5">
+        {% for item in top_careers %}
+            <li>{{ item.career.name }} - {{ item.match_percentage }}% match</li>
+        {% empty %}
+            <li>No career recommendations available yet.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- D3.js Tree Visualization -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+const treeData = {{ tree_data|safe }};
+const width = 900, height = 600;
+
+const svg = d3.select("#tree")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(50,50)");
+
+const root = d3.hierarchy(treeData);
+const treeLayout = d3.tree().size([height-100, width-200]);
+treeLayout(root);
+
+// Links
+svg.selectAll('path')
+    .data(root.links())
+    .enter()
+    .append('path')
+    .attr('class','link')
+    .attr('d', d3.linkHorizontal().x(d=>d.y).y(d=>d.x))
+    .attr('stroke','#555')
+    .attr('fill','none')
+    .attr('stroke-width',2);
+
+// Nodes
+const node = svg.selectAll('.node')
+    .data(root.descendants())
+    .enter()
+    .append('g')
+    .attr('class','node')
+    .attr('transform', d=>`translate(${d.y},${d.x})`);
+
+node.append('circle')
+    .attr('r', 20)
+    .attr('fill','#69b3a2');
+
+node.append('text')
+    .attr('dy', 5)
+    .attr('x', d => d.children ? -25 : 25)
+    .style('text-anchor', d => d.children ? 'end' : 'start')
+    .text(d => d.data.name)
+    .style('font','14px sans-serif');
+</script>
+{% endblock %}

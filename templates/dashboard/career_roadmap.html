@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-5xl mx-auto py-12 space-y-8">
+
+    <h1 class="text-3xl font-extrabold text-slate-900 mb-6">Career Roadmap Explorer</h1>
+    
+    <!-- Profession Select -->
+    <div class="flex gap-2 items-center mb-6">
+        <select id="professionSelect" class="p-3 border border-slate-300 rounded-xl flex-1">
+            <option value="">Select a Profession</option>
+            {% for prof in profession_files %}
+                <option value="{{ prof.file }}">{{ prof.name }}</option>
+            {% endfor %}
+        </select>
+        <button id="loadRoadmap" class="bg-indigo-600 text-white px-4 py-2 rounded-xl hover:bg-indigo-700">
+            Load Roadmap
+        </button>
+    </div>
+
+    <!-- Roadmap Display -->
+    <div id="roadmapContainer" class="space-y-6">
+        <p class="text-slate-500">Select a profession to view its detailed roadmap.</p>
+    </div>
+</div>
+
+<script>
+document.getElementById("loadRoadmap").addEventListener("click", async () => {
+    const professionFile = document.getElementById("professionSelect").value;
+    if(!professionFile) return;
+
+    const container = document.getElementById("roadmapContainer");
+    container.innerHTML = "<p class='text-slate-400'>Loading roadmap...</p>";
+
+    try {
+        const res = await fetch("{% url 'dashboard:career_roadmap_api' %}?profession=" + professionFile);
+        const data = await res.json();
+
+        if(data.error){
+            container.innerHTML = `<p class="text-red-500">${data.error}</p>`;
+            return;
+        }
+
+        // Render roadmap
+        let html = `<h2 class="text-xl font-bold mb-4">${data.profession || professionFile}</h2>`;
+        if(data.category) html += `<p class="text-slate-500 mb-2">Category: ${data.category}</p>`;
+        if(data.overview) html += `<p class="text-slate-500 mb-2">${data.overview}</p>`;
+        if(data.total_time_estimate) html += `<p class="text-sm text-slate-400 mb-2">Total Duration: ${data.total_time_estimate}</p>`;
+
+        if(data.average_cost_estimate){
+            html += `<p class="text-sm text-slate-400 mb-4">
+                Average Cost: Govt: ${data.average_cost_estimate.government || '-'}, Private: ${data.average_cost_estimate.private || '-'}
+            </p>`;
+        }
+
+        if(data.roadmap && data.roadmap.length){
+            data.roadmap.forEach(stage => {
+                html += `<div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm mb-4">`;
+                html += `<h3 class="font-bold text-lg">${stage.stage} - ${stage.title} ${stage.duration ? `(${stage.duration})` : ''}</h3>`;
+                if(stage.description) html += `<p class="text-slate-600 mt-1 mb-2">${stage.description}</p>`;
+
+                if(stage.key_actions){
+                    html += `<ul class="list-disc ml-6 text-slate-700">`;
+                    stage.key_actions.forEach(action => html += `<li>${action}</li>`);
+                    html += `</ul>`;
+                }
+
+                if(stage.exams_to_prepare){
+                    html += `<p class="text-slate-500 text-sm mt-2">Exams: ${stage.exams_to_prepare.join(", ")}</p>`;
+                }
+
+                if(stage.paths){
+                    html += `<p class="text-slate-500 text-sm mt-2">Specialization Paths:</p><ul class="list-disc ml-6">`;
+                    for(const [key, val] of Object.entries(stage.paths)){
+                        html += `<li>${key}: ${val.join(", ")}</li>`;
+                    }
+                    html += `</ul>`;
+                }
+
+                html += `</div>`;
+            });
+        } else {
+            html += `<p class="text-slate-500">No detailed roadmap available for this profession.</p>`;
+        }
+
+        container.innerHTML = html;
+
+    } catch(err){
+        container.innerHTML = `<p class="text-red-500">Failed to load roadmap. Try again later.</p>`;
+        console.error(err);
+    }
+});
+</script>
+{% endblock %}

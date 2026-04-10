@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="max-w-5xl mx-auto py-12 space-y-10">
+
+    <!-- HEADER -->
+    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-10 rounded-3xl shadow-xl text-center">
+        <h1 class="text-4xl font-black mb-2">Assessment Complete 🎉</h1>
+        <p class="text-indigo-100 text-lg">{{ attempt.test.name }}</p>
+    </div>
+
+
+    <!-- 🧠 TRAIT ANALYSIS -->
+    <div class="bg-white p-10 rounded-3xl shadow-lg border space-y-8">
+
+        <h2 class="text-2xl font-bold text-slate-800">🧠 Trait Analysis</h2>
+
+        {% for trait, percent in traits_percent.items %}
+        <div class="space-y-2">
+
+            <!-- Title -->
+            <div class="flex justify-between items-center">
+                <span class="font-semibold text-slate-700">
+                    {{ trait|cut:"_"|title }}
+                </span>
+
+                <span class="font-bold text-indigo-600">
+                    {{ percent|floatformat:0 }}%
+                </span>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-200 h-3 rounded-full overflow-hidden">
+                <div class="h-3 rounded-full transition-all duration-1000 ease-out
+                    {% if percent >= 75 %}
+                        bg-green-500
+                    {% elif percent >= 50 %}
+                        bg-yellow-500
+                    {% else %}
+                        bg-red-500
+                    {% endif %}"
+                    style="width: {{ percent }}%">
+                </div>
+            </div>
+
+            <!-- Insight -->
+            <p class="text-sm
+                {% if percent >= 75 %}
+                    text-green-600
+                {% elif percent >= 50 %}
+                    text-yellow-600
+                {% else %}
+                    text-red-500
+                {% endif %}">
+
+                {% if percent >= 75 %}
+                    Strong skill 💪 — You excel in this area.
+                {% elif percent >= 50 %}
+                    Moderate ⚡ — Good, but can improve further.
+                {% else %}
+                    Needs improvement 🚀 — Focus on developing this skill.
+                {% endif %}
+            </p>
+
+        </div>
+        {% empty %}
+        <p class="text-slate-500">No traits available.</p>
+        {% endfor %}
+
+    </div>
+
+
+    <!-- 🚀 CAREER MATCHES -->
+    {% if careers %}
+    <div class="bg-white p-10 rounded-3xl shadow-lg border space-y-6">
+
+        <h2 class="text-2xl font-bold text-slate-800">🚀 Recommended Careers</h2>
+
+        {% for career, score in careers %}
+        {% with percent=score|floatformat:2 %}
+        <div class="space-y-2">
+
+            <div class="flex justify-between items-center">
+                <span class="font-semibold text-slate-800">{{ career }}</span>
+                <span class="text-indigo-600 font-bold">
+                    {{ score|floatformat:2 }}
+                </span>
+            </div>
+
+            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                <div class="bg-indigo-500 h-2 rounded-full transition-all duration-700"
+                     style="width: {{ score|floatformat:2|floatformat }}%">
+                </div>
+            </div>
+
+        </div>
+        {% endwith %}
+        {% endfor %}
+
+    </div>
+    {% endif %}
+
+
+    <!-- 📉 SKILL GAPS -->
+    {% if gaps %}
+    <div class="bg-white p-10 rounded-3xl shadow-lg border space-y-6">
+
+        <h2 class="text-2xl font-bold text-slate-800">📉 Skill Gaps</h2>
+
+        {% for career, skills in gaps.items %}
+        <div class="bg-slate-50 p-5 rounded-xl">
+
+            <p class="font-semibold text-slate-800 mb-3">{{ career }}</p>
+
+            <ul class="text-sm text-slate-600 space-y-1">
+                {% for skill, gap in skills.items %}
+                    {% if gap > 0 %}
+                    <li>
+                        • {{ skill|cut:"_"|title }}
+                        <span class="text-red-500 font-medium">
+                            → Improve by {{ gap|floatformat:2 }}
+                        </span>
+                    </li>
+                    {% endif %}
+                {% empty %}
+                    <li class="text-green-600">No major gaps 🎯</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+        {% endfor %}
+
+    </div>
+    {% endif %}
+
+
+    <!-- 🎯 ACTION BUTTONS -->
+    <div class="flex flex-col md:flex-row gap-4">
+
+        <a href="{% url 'dashboard:home' %}"
+           class="w-full text-center py-4 bg-indigo-600 text-white font-bold rounded-xl shadow hover:bg-indigo-700 transition">
+           Go to Dashboard
+        </a>
+
+        <a href="{% url 'assessments:test_list' %}"
+           class="w-full text-center py-4 bg-slate-100 text-slate-700 font-bold rounded-xl hover:bg-slate-200 transition">
+           Take Another Test
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}
